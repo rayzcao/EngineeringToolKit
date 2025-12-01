@@ -4,31 +4,61 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Temperature Converter</title>
+    <title>Engineering Toolkit</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <script src="control.js"></script>
-    <h1 id = 'header'>Hello! Welcome to the Engineering Toolkit.</h1>
-    <h2 id = "subheader">This page contains several mini programs that may help you with your engineering work.</h2>
-    <div id = "tempConverter">
-        <h3 id ="tempHeader">Temperature Converter</h3>
-        <h4 id = "description">This program converts between Celsius(°C), Fahrenheit(°F), Kelvin(K)</h4>
-        <label for="tempInput">Temperature Input Value</label>
-        <input type="number" id="tempInput" name="tempInput"><br><br>
-        <label for="unitSelect">Unit Selection</label>
-        <select id="unitSelect" name="unitSelect">
-            <option value="CtoF">°C ➡️ °F</option>
-            <option value="FtoC">°F ➡️ °C</option>
-            <option value="CtoK">°C ➡️ K</option>
-            <option value="KtoC">K ➡️ °C</option>
-            <option value="FtoK">°F ➡️ K</option>
-            <option value="KtoF">K ➡️ °F</option>
-        </select><br><br>
-        <button onclick="convertTemperature()">Convert</button>
-        <p id="result"></p>
+    <div class="main-wrapper">
+        <header class="main-header">
+            <h1 id="header">Welcome to the Engineering Toolkit!</h1>
+            <p id="subheader">Utility programs for daily engineering tasks</p>
+            <p id="subheader">Author: Raymond Cao</p>
+        </header>
 
+        <div class="app-grid">
+            
+            <div id="tempConverter" class="card converter-card">
+                <h3 class="card-title">Temperature Converter</h3>
+                <p class="card-desc">Convert between Celsius (&deg;C), Fahrenheit (&deg;F), and Kelvin (K)</p>
+                
+                <div class="input-group">
+                    <label for="tempInput">Input Temperature</label>
+                    <input type="number" id="tempInput" placeholder="Enter value...">
+                </div>
+
+                <div class="input-group">
+                    <label for="unitSelect">Conversion Unit</label>
+                    <select id="unitSelect">
+                        <option value="CtoF">Celsius (&deg;C) &rarr; Fahrenheit (&deg;F)</option>
+                        <option value="FtoC">Fahrenheit (&deg;F) &rarr; Celsius (&deg;C)</option>
+                        <option value="CtoK">Celsius (&deg;C) &rarr; Kelvin (K)</option>
+                        <option value="KtoC">Kelvin (K) &rarr; Celsius (&deg;C)</option>
+                        <option value="FtoK">Fahrenheit (&deg;F) &rarr; Kelvin (K)</option>
+                        <option value="KtoF">Kelvin (K) &rarr; Fahrenheit (&deg;F)</option>
+                    </select>
+                </div>
+
+                <button onclick="convertTemperature()" class="convert-btn">Calculate</button>
+                
+                <div class="result-container">
+                    <p id="result">Waiting for input...</p>
+                </div>
+            </div>
+
+            <div class="card placeholder-card"><h3>App 2</h3><p>Coming Soon</p></div>
+            <div class="card placeholder-card"><h3>App 3</h3><p>Coming Soon</p></div>
+            <div class="card placeholder-card"><h3>App 4</h3><p>Coming Soon</p></div>
+            <div class="card placeholder-card"><h3>App 5</h3><p>Coming Soon</p></div>
+            <div class="card placeholder-card"><h3>App 6</h3><p>Coming Soon</p></div>
+            <div class="card placeholder-card"><h3>App 7</h3><p>Coming Soon</p></div>
+            <div class="card placeholder-card"><h3>App 8</h3><p>Coming Soon</p></div>
+            <div class="card placeholder-card"><h3>App 9</h3><p>Coming Soon</p></div>
+
+        </div>
     </div>
+    
+    <script src="control.js"></script>
 </body>
 </html>
