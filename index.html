@@ -12,14 +12,15 @@
 <body>
     <div class="main-wrapper">
         <header class="main-header">
-            <h1 id="header">Welcome to the Engineering Toolkit!</h1>
+            <h1 id="header">Engineering Toolkit</h1>
             <p id="subheader">Utility programs for daily engineering tasks</p>
             <p id="subheader">Author: Raymond Cao</p>
         </header>
 
         <div class="app-grid">
             
-            <div id="tempConverter" class="card converter-card">
+            <!-- APP 1: Temperature Converter -->
+            <div id="tempConverter" class="card">
                 <h3 class="card-title">Temperature Converter</h3>
                 <p class="card-desc">Convert between Celsius (&deg;C), Fahrenheit (&deg;F), and Kelvin (K)</p>
                 
@@ -47,7 +48,57 @@
                 </div>
             </div>
 
-            <div class="card placeholder-card"><h3>App 2</h3><p>Coming Soon</p></div>
+            <!-- APP 2: Moment of Inertia Calculator -->
+            <div id="inertiaApp" class="card">
+                <h3 class="card-title">Moment of Inertia</h3>
+                <!-- Fixed typography: Used <i>I</i> for italics instead of $ signs -->
+                <p class="card-desc">Calculate rotational inertia (<i>I</i>) for common 3D rigid bodies</p>
+
+                <div class="input-group">
+                    <label for="shapeSelect">Select Shape</label>
+                    <select id="shapeSelect" onchange="updateInertiaInputs()">
+                        <option value="solidSphere">Solid Sphere</option>
+                        <option value="hollowSphere">Hollow Sphere (Shell)</option>
+                        <option value="solidCylinder">Solid Cylinder (Disk)</option>
+                        <option value="rodCenter">Thin Rod (Center)</option>
+                        <option value="rectPlate">Rectangular Plate</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="massInput">Mass (<i>m</i>) in kg</label>
+                    <input type="number" id="massInput" placeholder="kg">
+                </div>
+
+                <!-- Dynamic Inputs -->
+                <div id="radiusGroup" class="input-group">
+                    <label for="radiusInput">Radius (<i>r</i>) in m</label>
+                    <input type="number" id="radiusInput" placeholder="meters">
+                </div>
+
+                <div id="lengthGroup" class="input-group hidden">
+                    <label for="lengthInput">Length (<i>L</i>) in m</label>
+                    <input type="number" id="lengthInput" placeholder="meters">
+                </div>
+
+                <div id="widthGroup" class="input-group hidden">
+                    <label for="widthInput">Width (<i>w</i>) in m</label>
+                    <input type="number" id="widthInput" placeholder="meters">
+                </div>
+                
+                <div id="heightGroup" class="input-group hidden">
+                    <label for="heightInput">Height (<i>h</i>) in m</label>
+                    <input type="number" id="heightInput" placeholder="meters">
+                </div>
+
+                <button onclick="calculateInertia()" class="convert-btn">Calculate</button>
+
+                <div class="result-container">
+                    <p id="inertiaResult">Select shape & enter values...</p>
+                </div>
+            </div>
+
+            <!-- Placeholders for Apps 3-9 -->
             <div class="card placeholder-card"><h3>App 3</h3><p>Coming Soon</p></div>
             <div class="card placeholder-card"><h3>App 4</h3><p>Coming Soon</p></div>
             <div class="card placeholder-card"><h3>App 5</h3><p>Coming Soon</p></div>

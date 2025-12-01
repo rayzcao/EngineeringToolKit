@@ -1,6 +1,6 @@
 /* 1. Global Reset and Variables */
 :root {
-    --primary-color: #0056b3;
+    --primary-color: #0056b3;       /* Engineering Blue */
     --primary-hover: #004494;
     --bg-color: #f4f7f6;
     --card-bg: #ffffff;
@@ -19,8 +19,8 @@ body {
 }
 
 .main-wrapper {
-    max-width: 1200px; /* Increased width to fit 3 columns */
-    margin: 0 auto;    /* Centers the wrapper */
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 40px 20px;
 }
 
@@ -44,9 +44,8 @@ body {
 /* 3. Grid Layout System */
 .app-grid {
     display: grid;
-    /* This creates exactly 3 equal columns */
     grid-template-columns: repeat(3, 1fr); 
-    gap: 30px; /* Space between the cards */
+    gap: 30px;
 }
 
 /* 4. Generic Card Styling */
@@ -57,11 +56,7 @@ body {
     padding: 25px;
     display: flex;
     flex-direction: column;
-}
-
-/* 5. Specific Converter Styling */
-.converter-card {
-    border-top: 5px solid var(--primary-color);
+    border-top: 5px solid var(--primary-color); /* Uniform Top Border */
 }
 
 .card-title {
@@ -75,10 +70,14 @@ body {
     color: var(--text-light);
     margin-bottom: 20px;
     text-align: center;
+    min-height: 40px; /* Keeps titles aligned */
 }
 
-/* 6. Form Elements */
+/* 5. Form Elements */
 .input-group { margin-bottom: 15px; }
+
+/* UTILITY CLASS: Used to hide inactive inputs in the Inertia calc */
+.hidden { display: none; }
 
 label {
     display: block;
@@ -95,6 +94,7 @@ input[type="number"], select {
     font-size: 0.95rem;
 }
 
+/* 6. Buttons - Unified Style */
 .convert-btn {
     width: 100%;
     padding: 10px;
@@ -105,7 +105,7 @@ input[type="number"], select {
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.2s;
-    margin-top: 5px;
+    margin-top: auto; /* Pushes button to bottom of flex container */
 }
 
 .convert-btn:hover { background-color: var(--primary-hover); }
@@ -120,21 +120,27 @@ input[type="number"], select {
     border: 1px solid #dae1e7;
 }
 
-#result { font-weight: bold; }
+#result, #inertiaResult { font-weight: bold; }
 
-/* 8. Placeholder Cards (for future apps) */
+/* 8. Placeholders */
 .placeholder-card {
     border: 2px dashed #ccc;
     background-color: transparent;
+    border-top: 2px dashed #ccc; /* Override the solid top border */
     justify-content: center;
     align-items: center;
     opacity: 0.6;
-    min-height: 300px; /* Ensures they match the height of the converter roughly */
+    min-height: 350px; 
 }
 
-/* Optional: Make it stack on mobile phones */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     .app-grid {
-        grid-template-columns: 1fr; /* Stack vertically on small screens */
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .app-grid {
+        grid-template-columns: 1fr;
     }
 }
