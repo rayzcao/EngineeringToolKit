@@ -1,14 +1,27 @@
 // --- Navigation Helper ---
-function scrollToApp(id) {
+function scrollToApp(id, navButton) {
     const element = document.getElementById(id);
+    
+    // 1. Scroll Logic
     if (element) {
         element.scrollIntoView({ behavior: 'smooth', block: 'center' });
         
-        // Visual feedback
+        // Visual bounce effect
         element.style.transform = "scale(1.02)";
         setTimeout(() => {
             element.style.transform = "scale(1)";
         }, 300);
+    }
+
+    // 2. Update Active Tab State
+    if (navButton) {
+        // Remove 'active' from all nav buttons
+        document.querySelectorAll('.nav-item').forEach(btn => {
+            btn.classList.remove('active');
+        });
+
+        // Add 'active' to the clicked button
+        navButton.classList.add('active');
     }
 }
 
@@ -27,7 +40,6 @@ function convertTemperature() {
     }
 
     let outputTemp;
-
     switch (conversionType) {
         case "CtoF":
             outputTemp = (inputTemp * 9/5) + 32;

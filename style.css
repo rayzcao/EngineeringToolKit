@@ -6,19 +6,19 @@
     --shack-white: #ffffff;
     --bg-color: #f7f7f7;         /* Very Light Grey */
     --text-color: #2e2e2e;
-    --border-radius: 4px;        /* Slightly rounded, almost sharp */
+    --border-radius: 4px;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-    font-family: 'Montserrat', sans-serif; /* Geometric Sans */
+    font-family: 'Montserrat', sans-serif;
     background-color: var(--bg-color);
     color: var(--text-color);
-    padding-top: 80px; /* Space for fixed nav */
+    padding-top: 80px;
 }
 
-/* 2. Navigation Bar (Shake Shack Style) */
+/* 2. Navigation Bar */
 .shack-nav {
     position: fixed;
     top: 0;
@@ -26,13 +26,15 @@ body {
     width: 100%;
     background-color: var(--shack-black);
     color: var(--shack-white);
-    padding: 15px 0;
+    padding: 0; /* Removed padding, height is handled by flex container */
+    height: 70px;
     z-index: 1000;
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
 .nav-container {
     max-width: 1200px;
+    height: 100%;
     margin: 0 auto;
     padding: 0 20px;
     display: flex;
@@ -50,9 +52,12 @@ body {
 
 .nav-links {
     display: flex;
-    gap: 15px;
+    gap: 20px;
+    height: 100%;
+    align-items: center;
 }
 
+/* --- ANIMATED NAV BUTTONS --- */
 .nav-item {
     background: transparent;
     border: none;
@@ -63,10 +68,36 @@ body {
     cursor: pointer;
     text-transform: uppercase;
     transition: color 0.2s;
+    
+    /* key for positioning the bar */
+    position: relative; 
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 5px;
 }
 
-.nav-item:hover { color: var(--shack-green); }
-.nav-item.active { color: var(--shack-green); }
+/* The Green Bar */
+.nav-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0; /* Sit at the very bottom of the nav bar */
+    left: 0;
+    width: 0%; /* Start hidden */
+    height: 4px; /* Thickness of the bar */
+    background-color: var(--shack-green);
+    transition: width 0.3s ease-in-out; /* The smooth animation */
+}
+
+/* Hover & Active States */
+.nav-item:hover {
+    color: var(--shack-green);
+}
+
+.nav-item:hover::after,
+.nav-item.active::after {
+    width: 100%; /* Extend to full width */
+}
 
 /* 3. Page Headers */
 .main-wrapper {
@@ -120,9 +151,7 @@ body {
     box-shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
 
-.card-header {
-    padding: 20px 20px 10px 20px;
-}
+.card-header { padding: 20px 20px 10px 20px; }
 
 .card-title {
     font-weight: 800;
@@ -179,14 +208,14 @@ input:focus, select:focus {
 
 .hidden { display: none; }
 
-/* 7. Action Button (The "Shack" Button) */
+/* 7. Action Button */
 .shack-btn {
     width: 100%;
     padding: 14px;
     background-color: var(--shack-green);
     color: white;
     border: none;
-    border-radius: 25px; /* Pill shape */
+    border-radius: 25px;
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -196,9 +225,7 @@ input:focus, select:focus {
     font-size: 0.9rem;
 }
 
-.shack-btn:hover {
-    background-color: var(--shack-green-dark);
-}
+.shack-btn:hover { background-color: var(--shack-green-dark); }
 
 /* 8. Result Box */
 .result-box {
@@ -232,7 +259,6 @@ input:focus, select:focus {
     font-size: 1.5rem;
 }
 
-/* Mobile Responsiveness */
 @media (max-width: 900px) {
     .app-grid { grid-template-columns: repeat(2, 1fr); }
     .nav-links button { font-size: 0.7rem; padding: 0 5px; }
@@ -240,6 +266,6 @@ input:focus, select:focus {
 
 @media (max-width: 600px) {
     .app-grid { grid-template-columns: 1fr; }
-    .nav-links { display: none; } /* Hide detailed nav on very small screens */
+    .nav-links { display: none; } 
     .nav-brand { margin: 0 auto; }
 }

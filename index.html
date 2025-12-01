@@ -5,52 +5,48 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Engineering Toolkit</title>
-    <!-- Montserrat font for that modern, geometric "Shake Shack" look -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <!-- Shake Shack Style Navigation Bar -->
     <nav class="shack-nav">
         <div class="nav-container">
             <div class="nav-brand">ENG TOOLKIT</div>
             <div class="nav-links">
-                <button class="nav-item active" onclick="scrollToApp('tempConverter')">Temp</button>
-                <button class="nav-item" onclick="scrollToApp('inertiaApp')">Inertia</button>
-                <button class="nav-item" onclick="scrollToApp('app3')">App 3</button>
-                <button class="nav-item" onclick="scrollToApp('app4')">App 4</button>
-                <button class="nav-item" onclick="scrollToApp('app5')">App 5</button>
-                <button class="nav-item" onclick="scrollToApp('app6')">App 6</button>
-                <button class="nav-item" onclick="scrollToApp('app7')">App 7</button>
-                <button class="nav-item" onclick="scrollToApp('app8')">App 8</button>
-                <button class="nav-item" onclick="scrollToApp('app9')">App 9</button>
+                <!-- Removed 'active' class from the first button so it starts neutral -->
+                <button class="nav-item" onclick="scrollToApp('tempConverter', this)">Temp</button>
+                <button class="nav-item" onclick="scrollToApp('inertiaApp', this)">Inertia</button>
+                <button class="nav-item" onclick="scrollToApp('app3', this)">App 3</button>
+                <button class="nav-item" onclick="scrollToApp('app4', this)">App 4</button>
+                <button class="nav-item" onclick="scrollToApp('app5', this)">App 5</button>
+                <button class="nav-item" onclick="scrollToApp('app6', this)">App 6</button>
+                <button class="nav-item" onclick="scrollToApp('app7', this)">App 7</button>
+                <button class="nav-item" onclick="scrollToApp('app8', this)">App 8</button>
+                <button class="nav-item" onclick="scrollToApp('app9', this)">App 9</button>
             </div>
         </div>
     </nav>
 
-    <!-- Main Content Area -->
     <div class="main-wrapper">
         <header class="page-header">
             <h1>Engineering Toolkit</h1>
-            <p>Author: Raymond Cao</p>
+            <p>Freshly coded utilities for daily tasks</p>
         </header>
 
         <div class="app-grid">
             
-            <!-- APP 1: Temperature Converter (1,1) -->
+            <!-- APP 1 -->
             <div id="tempConverter" class="card">
                 <div class="card-header">
                     <h3 class="card-title">Temp Converter</h3>
                 </div>
                 <div class="card-body">
                     <p class="card-desc">Celsius (&deg;C), Fahrenheit (&deg;F), Kelvin (K)</p>
-                    
                     <div class="input-group">
                         <label for="tempInput">Input Value</label>
                         <input type="number" id="tempInput" placeholder="0">
                     </div>
-
                     <div class="input-group">
                         <label for="unitSelect">Conversion</label>
                         <select id="unitSelect">
@@ -62,23 +58,20 @@
                             <option value="KtoF">Kelvin (K) &rarr; Fahrenheit (&deg;F)</option>
                         </select>
                     </div>
-
                     <button onclick="convertTemperature()" class="shack-btn">CALCULATE</button>
-                    
                     <div class="result-box">
                         <p id="result">Waiting for input...</p>
                     </div>
                 </div>
             </div>
 
-            <!-- APP 2: Moment of Inertia (1,2) -->
+            <!-- APP 2 -->
             <div id="inertiaApp" class="card">
                 <div class="card-header">
                     <h3 class="card-title">Inertia Calc</h3>
                 </div>
                 <div class="card-body">
                     <p class="card-desc">Rotational inertia (<i>I</i>) for rigid bodies</p>
-
                     <div class="input-group">
                         <label for="shapeSelect">Shape</label>
                         <select id="shapeSelect" onchange="updateInertiaInputs()">
@@ -89,42 +82,34 @@
                             <option value="rectPlate">Rectangular Plate</option>
                         </select>
                     </div>
-
                     <div class="input-group">
                         <label for="massInput">Mass (<i>m</i>) kg</label>
                         <input type="number" id="massInput" placeholder="0">
                     </div>
-
-                    <!-- Dynamic Inputs -->
                     <div id="radiusGroup" class="input-group">
                         <label for="radiusInput">Radius (<i>r</i>) m</label>
                         <input type="number" id="radiusInput" placeholder="0">
                     </div>
-
                     <div id="lengthGroup" class="input-group hidden">
                         <label for="lengthInput">Length (<i>L</i>) m</label>
                         <input type="number" id="lengthInput" placeholder="0">
                     </div>
-
                     <div id="widthGroup" class="input-group hidden">
                         <label for="widthInput">Width (<i>w</i>) m</label>
                         <input type="number" id="widthInput" placeholder="0">
                     </div>
-                    
                     <div id="heightGroup" class="input-group hidden">
                         <label for="heightInput">Height (<i>h</i>) m</label>
                         <input type="number" id="heightInput" placeholder="0">
                     </div>
-
                     <button onclick="calculateInertia()" class="shack-btn">CALCULATE</button>
-
                     <div class="result-box">
                         <p id="inertiaResult">Waiting for input...</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Placeholders for Apps 3-9 -->
+            <!-- Placeholders -->
             <div id="app3" class="card placeholder-card"><h3>App 3</h3><p>Coming Soon</p></div>
             <div id="app4" class="card placeholder-card"><h3>App 4</h3><p>Coming Soon</p></div>
             <div id="app5" class="card placeholder-card"><h3>App 5</h3><p>Coming Soon</p></div>
@@ -132,10 +117,8 @@
             <div id="app7" class="card placeholder-card"><h3>App 7</h3><p>Coming Soon</p></div>
             <div id="app8" class="card placeholder-card"><h3>App 8</h3><p>Coming Soon</p></div>
             <div id="app9" class="card placeholder-card"><h3>App 9</h3><p>Coming Soon</p></div>
-
         </div>
     </div>
-    
     <script src="control.js"></script>
 </body>
 </html>
