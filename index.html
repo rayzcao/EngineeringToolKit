@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <script src="control.js"></script>
+    <h1 id = 'header'>Hello! Welcome to the Engineering Toolkit.</h1>
+    <h2 id = "subheader">This page contains several mini programs that may help you with your engineering work.</h2>
+    <div id = "tempConverter">
+        <h3 id ="tempHeader">Temperature Converter</h3>
+        <h4 id = "description">This program converts between Celsius(°C), Fahrenheit(°F), Kelvin(K)</h4>
+        <label for="tempInput">Temperature Input Value</label>
+        <input type="number" id="tempInput" name="tempInput"><br><br>
+        <label for="unitSelect">Unit Selection</label>
+        <select id="unitSelect" name="unitSelect">
+            <option value="CtoF">°C ➡️ °F</option>
+            <option value="FtoC">°F ➡️ °C</option>
+            <option value="CtoK">°C ➡️ K</option>
+            <option value="KtoC">K ➡️ °C</option>
+            <option value="FtoK">°F ➡️ K</option>
+            <option value="KtoF">K ➡️ °F</option>
+        </select><br><br>
+        <button onclick="convertTemperature()">Convert</button>
+        <p id="result"></p>
+
+    </div>
+</body>
+</html>

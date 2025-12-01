@@ -1,0 +1,22 @@
+#header {
+    color: rgb(199, 46, 8);
+    text-align: center;
+}
+#tempHeader {
+    background-color: aqua;
+    text-align: center;
+}
+#subheader {
+    color: rgb(44, 12, 251);
+    text-align: center;
+}
+
+#body {
+    font-family: Arial, sans-serif;
+}
+
+#tempConverter {
+    text-align: center;
+    border: 3px solid black;
+    padding: 10px;
+}
