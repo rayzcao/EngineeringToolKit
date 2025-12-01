@@ -5,107 +5,133 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Engineering Toolkit</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Montserrat font for that modern, geometric "Shake Shack" look -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <!-- Shake Shack Style Navigation Bar -->
+    <nav class="shack-nav">
+        <div class="nav-container">
+            <div class="nav-brand">ENG TOOLKIT</div>
+            <div class="nav-links">
+                <button class="nav-item active" onclick="scrollToApp('tempConverter')">Temp</button>
+                <button class="nav-item" onclick="scrollToApp('inertiaApp')">Inertia</button>
+                <button class="nav-item" onclick="scrollToApp('app3')">App 3</button>
+                <button class="nav-item" onclick="scrollToApp('app4')">App 4</button>
+                <button class="nav-item" onclick="scrollToApp('app5')">App 5</button>
+                <button class="nav-item" onclick="scrollToApp('app6')">App 6</button>
+                <button class="nav-item" onclick="scrollToApp('app7')">App 7</button>
+                <button class="nav-item" onclick="scrollToApp('app8')">App 8</button>
+                <button class="nav-item" onclick="scrollToApp('app9')">App 9</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
     <div class="main-wrapper">
-        <header class="main-header">
-            <h1 id="header">Engineering Toolkit</h1>
-            <p id="subheader">Utility programs for daily engineering tasks</p>
-            <p id="subheader">Author: Raymond Cao</p>
+        <header class="page-header">
+            <h1>Engineering Toolkit</h1>
+            <p>Author: Raymond Cao</p>
         </header>
 
         <div class="app-grid">
             
-            <!-- APP 1: Temperature Converter -->
+            <!-- APP 1: Temperature Converter (1,1) -->
             <div id="tempConverter" class="card">
-                <h3 class="card-title">Temperature Converter</h3>
-                <p class="card-desc">Convert between Celsius (&deg;C), Fahrenheit (&deg;F), and Kelvin (K)</p>
-                
-                <div class="input-group">
-                    <label for="tempInput">Input Temperature</label>
-                    <input type="number" id="tempInput" placeholder="Enter value...">
+                <div class="card-header">
+                    <h3 class="card-title">Temp Converter</h3>
                 </div>
+                <div class="card-body">
+                    <p class="card-desc">Celsius (&deg;C), Fahrenheit (&deg;F), Kelvin (K)</p>
+                    
+                    <div class="input-group">
+                        <label for="tempInput">Input Value</label>
+                        <input type="number" id="tempInput" placeholder="0">
+                    </div>
 
-                <div class="input-group">
-                    <label for="unitSelect">Conversion Unit</label>
-                    <select id="unitSelect">
-                        <option value="CtoF">Celsius (&deg;C) &rarr; Fahrenheit (&deg;F)</option>
-                        <option value="FtoC">Fahrenheit (&deg;F) &rarr; Celsius (&deg;C)</option>
-                        <option value="CtoK">Celsius (&deg;C) &rarr; Kelvin (K)</option>
-                        <option value="KtoC">Kelvin (K) &rarr; Celsius (&deg;C)</option>
-                        <option value="FtoK">Fahrenheit (&deg;F) &rarr; Kelvin (K)</option>
-                        <option value="KtoF">Kelvin (K) &rarr; Fahrenheit (&deg;F)</option>
-                    </select>
-                </div>
+                    <div class="input-group">
+                        <label for="unitSelect">Conversion</label>
+                        <select id="unitSelect">
+                            <option value="CtoF">Celsius (&deg;C) &rarr; Fahrenheit (&deg;F)</option>
+                            <option value="FtoC">Fahrenheit (&deg;F) &rarr; Celsius (&deg;C)</option>
+                            <option value="CtoK">Celsius (&deg;C) &rarr; Kelvin (K)</option>
+                            <option value="KtoC">Kelvin (K) &rarr; Celsius (&deg;C)</option>
+                            <option value="FtoK">Fahrenheit (&deg;F) &rarr; Kelvin (K)</option>
+                            <option value="KtoF">Kelvin (K) &rarr; Fahrenheit (&deg;F)</option>
+                        </select>
+                    </div>
 
-                <button onclick="convertTemperature()" class="convert-btn">Calculate</button>
-                
-                <div class="result-container">
-                    <p id="result">Waiting for input...</p>
+                    <button onclick="convertTemperature()" class="shack-btn">CALCULATE</button>
+                    
+                    <div class="result-box">
+                        <p id="result">Waiting for input...</p>
+                    </div>
                 </div>
             </div>
 
-            <!-- APP 2: Moment of Inertia Calculator -->
+            <!-- APP 2: Moment of Inertia (1,2) -->
             <div id="inertiaApp" class="card">
-                <h3 class="card-title">Moment of Inertia</h3>
-                <!-- Fixed typography: Used <i>I</i> for italics instead of $ signs -->
-                <p class="card-desc">Calculate rotational inertia (<i>I</i>) for common 3D rigid bodies</p>
-
-                <div class="input-group">
-                    <label for="shapeSelect">Select Shape</label>
-                    <select id="shapeSelect" onchange="updateInertiaInputs()">
-                        <option value="solidSphere">Solid Sphere</option>
-                        <option value="hollowSphere">Hollow Sphere (Shell)</option>
-                        <option value="solidCylinder">Solid Cylinder (Disk)</option>
-                        <option value="rodCenter">Thin Rod (Center)</option>
-                        <option value="rectPlate">Rectangular Plate</option>
-                    </select>
+                <div class="card-header">
+                    <h3 class="card-title">Inertia Calc</h3>
                 </div>
+                <div class="card-body">
+                    <p class="card-desc">Rotational inertia (<i>I</i>) for rigid bodies</p>
 
-                <div class="input-group">
-                    <label for="massInput">Mass (<i>m</i>) in kg</label>
-                    <input type="number" id="massInput" placeholder="kg">
-                </div>
+                    <div class="input-group">
+                        <label for="shapeSelect">Shape</label>
+                        <select id="shapeSelect" onchange="updateInertiaInputs()">
+                            <option value="solidSphere">Solid Sphere</option>
+                            <option value="hollowSphere">Hollow Sphere</option>
+                            <option value="solidCylinder">Solid Cylinder</option>
+                            <option value="rodCenter">Thin Rod</option>
+                            <option value="rectPlate">Rectangular Plate</option>
+                        </select>
+                    </div>
 
-                <!-- Dynamic Inputs -->
-                <div id="radiusGroup" class="input-group">
-                    <label for="radiusInput">Radius (<i>r</i>) in m</label>
-                    <input type="number" id="radiusInput" placeholder="meters">
-                </div>
+                    <div class="input-group">
+                        <label for="massInput">Mass (<i>m</i>) kg</label>
+                        <input type="number" id="massInput" placeholder="0">
+                    </div>
 
-                <div id="lengthGroup" class="input-group hidden">
-                    <label for="lengthInput">Length (<i>L</i>) in m</label>
-                    <input type="number" id="lengthInput" placeholder="meters">
-                </div>
+                    <!-- Dynamic Inputs -->
+                    <div id="radiusGroup" class="input-group">
+                        <label for="radiusInput">Radius (<i>r</i>) m</label>
+                        <input type="number" id="radiusInput" placeholder="0">
+                    </div>
 
-                <div id="widthGroup" class="input-group hidden">
-                    <label for="widthInput">Width (<i>w</i>) in m</label>
-                    <input type="number" id="widthInput" placeholder="meters">
-                </div>
-                
-                <div id="heightGroup" class="input-group hidden">
-                    <label for="heightInput">Height (<i>h</i>) in m</label>
-                    <input type="number" id="heightInput" placeholder="meters">
-                </div>
+                    <div id="lengthGroup" class="input-group hidden">
+                        <label for="lengthInput">Length (<i>L</i>) m</label>
+                        <input type="number" id="lengthInput" placeholder="0">
+                    </div>
 
-                <button onclick="calculateInertia()" class="convert-btn">Calculate</button>
+                    <div id="widthGroup" class="input-group hidden">
+                        <label for="widthInput">Width (<i>w</i>) m</label>
+                        <input type="number" id="widthInput" placeholder="0">
+                    </div>
+                    
+                    <div id="heightGroup" class="input-group hidden">
+                        <label for="heightInput">Height (<i>h</i>) m</label>
+                        <input type="number" id="heightInput" placeholder="0">
+                    </div>
 
-                <div class="result-container">
-                    <p id="inertiaResult">Select shape & enter values...</p>
+                    <button onclick="calculateInertia()" class="shack-btn">CALCULATE</button>
+
+                    <div class="result-box">
+                        <p id="inertiaResult">Waiting for input...</p>
+                    </div>
                 </div>
             </div>
 
             <!-- Placeholders for Apps 3-9 -->
-            <div class="card placeholder-card"><h3>App 3</h3><p>Coming Soon</p></div>
-            <div class="card placeholder-card"><h3>App 4</h3><p>Coming Soon</p></div>
-            <div class="card placeholder-card"><h3>App 5</h3><p>Coming Soon</p></div>
-            <div class="card placeholder-card"><h3>App 6</h3><p>Coming Soon</p></div>
-            <div class="card placeholder-card"><h3>App 7</h3><p>Coming Soon</p></div>
-            <div class="card placeholder-card"><h3>App 8</h3><p>Coming Soon</p></div>
-            <div class="card placeholder-card"><h3>App 9</h3><p>Coming Soon</p></div>
+            <div id="app3" class="card placeholder-card"><h3>App 3</h3><p>Coming Soon</p></div>
+            <div id="app4" class="card placeholder-card"><h3>App 4</h3><p>Coming Soon</p></div>
+            <div id="app5" class="card placeholder-card"><h3>App 5</h3><p>Coming Soon</p></div>
+            <div id="app6" class="card placeholder-card"><h3>App 6</h3><p>Coming Soon</p></div>
+            <div id="app7" class="card placeholder-card"><h3>App 7</h3><p>Coming Soon</p></div>
+            <div id="app8" class="card placeholder-card"><h3>App 8</h3><p>Coming Soon</p></div>
+            <div id="app9" class="card placeholder-card"><h3>App 9</h3><p>Coming Soon</p></div>
 
         </div>
     </div>
