@@ -15,12 +15,9 @@ function scrollToApp(id, navButton) {
 
     // 2. Update Active Tab State
     if (navButton) {
-        // Remove 'active' from all nav buttons
         document.querySelectorAll('.nav-item').forEach(btn => {
             btn.classList.remove('active');
         });
-
-        // Add 'active' to the clicked button
         navButton.classList.add('active');
     }
 }
@@ -145,4 +142,81 @@ function calculateInertia() {
         resultBox.textContent = "Check dimensions";
         resultBox.style.color = "#d9534f";
     }
+}
+
+// --- APP 3: Normal Distribution Calculator ---
+function calculateProbability() {
+    const mean = parseFloat(document.getElementById("meanInput").value);
+    const std = parseFloat(document.getElementById("stdInput").value);
+    const x = parseFloat(document.getElementById("xInput").value);
+    const resultBox = document.getElementById("probResult");
+
+    if (isNaN(mean) || isNaN(std) || isNaN(x)) {
+        resultBox.textContent = "Please check inputs";
+        resultBox.style.color = "#d9534f";
+        return;
+    }
+
+    if (std <= 0) {
+        resultBox.textContent = "Std Dev must be > 0";
+        resultBox.style.color = "#d9534f";
+        return;
+    }
+
+    // 1. Calculate PDF
+    const variance = std * std;
+    const exponent = Math.exp(-Math.pow(x - mean, 2) / (2 * variance));
+    const pdf = (1 / (std * Math.sqrt(2 * Math.PI))) * exponent;
+
+    // 2. Calculate CDF (using Abramowitz & Stegun approximation)
+    const z = (x - mean) / std;
+    
+    function getStandardCDF(z) {
+        if (z < -6) return 0;
+        if (z > 6) return 1;
+
+        const t = 1 / (1 + 0.2316419 * Math.abs(z));
+        const d = 0.3989422804014337 * Math.exp(-z * z / 2);
+        const prob = d * t * (0.319381530 + t * (-0.356563782 + t * (1.781477937 + t * (-1.821255978 + t * 1.330274429))));
+        
+        return z >= 0 ? 1 - prob : prob;
+    }
+
+    const cdf = getStandardCDF(z);
+
+    resultBox.style.color = "#1c1c1c";
+    resultBox.innerHTML = `PDF: ${pdf.toFixed(4)} <br> CDF: ${cdf.toFixed(4)}`;
+}
+
+// --- APP 4: Mohr's Circle Calculator ---
+function calculateMohrsCircle() {
+    const sx = parseFloat(document.getElementById("sigmaX").value);
+    const sy = parseFloat(document.getElementById("sigmaY").value);
+    const txy = parseFloat(document.getElementById("tauXY").value);
+    const resultBox = document.getElementById("mohrResult");
+
+    if (isNaN(sx) || isNaN(sy) || isNaN(txy)) {
+        resultBox.textContent = "Enter stress values";
+        resultBox.style.color = "#d9534f";
+        return;
+    }
+
+    // Calculate Average Stress (Center of Circle)
+    const sigmaAvg = (sx + sy) / 2;
+
+    // Calculate Radius (Max Shear Stress)
+    const R = Math.sqrt(Math.pow((sx - sy) / 2, 2) + Math.pow(txy, 2));
+
+    // Principal Stresses
+    const sigma1 = sigmaAvg + R;
+    const sigma2 = sigmaAvg - R;
+    
+    // Max Shear Stress
+    const tauMax = R;
+
+    resultBox.style.color = "#1c1c1c";
+    resultBox.innerHTML = 
+        `&sigma;<sub>1</sub> = ${sigma1.toFixed(2)} <br>` +
+        `&sigma;<sub>2</sub> = ${sigma2.toFixed(2)} <br>` +
+        `&tau;<sub>max</sub> = ${tauMax.toFixed(2)}`;
 }

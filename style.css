@@ -26,7 +26,7 @@ body {
     width: 100%;
     background-color: var(--shack-black);
     color: var(--shack-white);
-    padding: 0; /* Removed padding, height is handled by flex container */
+    padding: 0; 
     height: 70px;
     z-index: 1000;
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
@@ -68,8 +68,6 @@ body {
     cursor: pointer;
     text-transform: uppercase;
     transition: color 0.2s;
-    
-    /* key for positioning the bar */
     position: relative; 
     height: 100%;
     display: flex;
@@ -81,12 +79,12 @@ body {
 .nav-item::after {
     content: '';
     position: absolute;
-    bottom: 0; /* Sit at the very bottom of the nav bar */
+    bottom: 0;
     left: 0;
-    width: 0%; /* Start hidden */
-    height: 4px; /* Thickness of the bar */
+    width: 0%; 
+    height: 4px; 
     background-color: var(--shack-green);
-    transition: width 0.3s ease-in-out; /* The smooth animation */
+    transition: width 0.3s ease-in-out; 
 }
 
 /* Hover & Active States */
@@ -96,7 +94,7 @@ body {
 
 .nav-item:hover::after,
 .nav-item.active::after {
-    width: 100%; /* Extend to full width */
+    width: 100%; 
 }
 
 /* 3. Page Headers */
@@ -235,7 +233,8 @@ input:focus, select:focus {
     text-align: center;
 }
 
-#result, #inertiaResult {
+/* I added #probResult and #mohrResult to this list so they get the bold styling */
+#result, #inertiaResult, #probResult, #mohrResult {
     font-weight: 700;
     font-size: 1.1rem;
     color: var(--shack-black);

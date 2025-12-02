@@ -12,13 +12,13 @@
 <body>
     <nav class="shack-nav">
         <div class="nav-container">
-            <div class="nav-brand">ENG TOOLKIT</div>
+            <div class="nav-brand">ENGR TK</div>
             <div class="nav-links">
-                <!-- Removed 'active' class from the first button so it starts neutral -->
                 <button class="nav-item" onclick="scrollToApp('tempConverter', this)">Temp</button>
                 <button class="nav-item" onclick="scrollToApp('inertiaApp', this)">Inertia</button>
-                <button class="nav-item" onclick="scrollToApp('app3', this)">App 3</button>
-                <button class="nav-item" onclick="scrollToApp('app4', this)">App 4</button>
+                <button class="nav-item" onclick="scrollToApp('probApp', this)">Stats</button>
+                <!-- New App 4 Button -->
+                <button class="nav-item" onclick="scrollToApp('mohrApp', this)">Stress</button>
                 <button class="nav-item" onclick="scrollToApp('app5', this)">App 5</button>
                 <button class="nav-item" onclick="scrollToApp('app6', this)">App 6</button>
                 <button class="nav-item" onclick="scrollToApp('app7', this)">App 7</button>
@@ -36,10 +36,10 @@
 
         <div class="app-grid">
             
-            <!-- APP 1 -->
+            <!-- APP 1: Temp -->
             <div id="tempConverter" class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Temp Converter</h3>
+                    <h3 class="card-title">Temperature Converter</h3>
                 </div>
                 <div class="card-body">
                     <p class="card-desc">Celsius (&deg;C), Fahrenheit (&deg;F), Kelvin (K)</p>
@@ -58,14 +58,14 @@
                             <option value="KtoF">Kelvin (K) &rarr; Fahrenheit (&deg;F)</option>
                         </select>
                     </div>
-                    <button onclick="convertTemperature()" class="shack-btn">CALCULATE</button>
+                    <button onclick="convertTemperature()" class="shack-btn">Calculate</button>
                     <div class="result-box">
                         <p id="result">Waiting for input...</p>
                     </div>
                 </div>
             </div>
 
-            <!-- APP 2 -->
+            <!-- APP 2: Inertia -->
             <div id="inertiaApp" class="card">
                 <div class="card-header">
                     <h3 class="card-title">Inertia Calc</h3>
@@ -102,16 +102,71 @@
                         <label for="heightInput">Height (<i>h</i>) m</label>
                         <input type="number" id="heightInput" placeholder="0">
                     </div>
-                    <button onclick="calculateInertia()" class="shack-btn">CALCULATE</button>
+                    <button onclick="calculateInertia()" class="shack-btn">Calculate</button>
                     <div class="result-box">
                         <p id="inertiaResult">Waiting for input...</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Placeholders -->
-            <div id="app3" class="card placeholder-card"><h3>App 3</h3><p>Coming Soon</p></div>
-            <div id="app4" class="card placeholder-card"><h3>App 4</h3><p>Coming Soon</p></div>
+            <!-- APP 3: Distribution -->
+            <div id="probApp" class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Normal Dist.</h3>
+                </div>
+                <div class="card-body">
+                    <p class="card-desc">Calculate PDF & CDF for Normal Distribution</p>
+                    <div class="input-group">
+                        <label for="meanInput">Mean (&mu;)</label>
+                        <input type="number" id="meanInput" placeholder="0">
+                    </div>
+                    <div class="input-group">
+                        <label for="stdInput">Std Deviation (&sigma;)</label>
+                        <input type="number" id="stdInput" placeholder="1">
+                    </div>
+                    <div class="input-group">
+                        <label for="xInput">Target Value (x)</label>
+                        <input type="number" id="xInput" placeholder="0">
+                    </div>
+                    <button onclick="calculateProbability()" class="shack-btn">Calculate</button>
+                    <div class="result-box">
+                        <p id="probResult">Waiting for input...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- APP 4: Mohr's Circle -->
+            <div id="mohrApp" class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Mohr's Circle</h3>
+                </div>
+                <div class="card-body">
+                    <p class="card-desc">Plane stress transformation & principal stresses</p>
+
+                    <div class="input-group">
+                        <label for="sigmaX">Normal Stress X (&sigma;<sub>x</sub>)</label>
+                        <input type="number" id="sigmaX" placeholder="MPa">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="sigmaY">Normal Stress Y (&sigma;<sub>y</sub>)</label>
+                        <input type="number" id="sigmaY" placeholder="MPa">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="tauXY">Shear Stress (&tau;<sub>xy</sub>)</label>
+                        <input type="number" id="tauXY" placeholder="MPa">
+                    </div>
+
+                    <button onclick="calculateMohrsCircle()" class="shack-btn">Calculate</button>
+
+                    <div class="result-box">
+                        <p id="mohrResult">Waiting for input...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Placeholders 5-9 -->
             <div id="app5" class="card placeholder-card"><h3>App 5</h3><p>Coming Soon</p></div>
             <div id="app6" class="card placeholder-card"><h3>App 6</h3><p>Coming Soon</p></div>
             <div id="app7" class="card placeholder-card"><h3>App 7</h3><p>Coming Soon</p></div>
