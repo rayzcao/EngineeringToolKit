@@ -185,7 +185,7 @@ label {
     color: #888;
 }
 
-input[type="number"], select {
+input[type="number"], input[type="text"], select {
     width: 100%;
     padding: 12px;
     border: 2px solid #eee;
@@ -231,11 +231,11 @@ input:focus, select:focus {
     padding: 15px;
     border-top: 2px dashed #eee;
     text-align: center;
-    margin-bottom: 10px; /* Added spacing before table */
+    margin-bottom: 10px;
 }
 
-/* I added #logicResult to this list so it gets the bold styling */
-#result, #inertiaResult, #probResult, #mohrResult, #logicResult {
+/* Added #numResult to the bold list */
+#result, #inertiaResult, #probResult, #mohrResult, #logicResult, #numResult {
     font-weight: 700;
     font-size: 1.1rem;
     color: var(--shack-black);
@@ -270,9 +270,8 @@ input:focus, select:focus {
     color: #444;
 }
 
-/* Highlight the row matching current inputs */
 .shack-table .active-row {
-    background-color: rgba(96, 179, 77, 0.2); /* Light Shack Green */
+    background-color: rgba(96, 179, 77, 0.2); 
     font-weight: 700;
     color: var(--shack-black);
 }

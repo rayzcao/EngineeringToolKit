@@ -208,14 +208,13 @@ function calculateMohrsCircle() {
 
     resultBox.style.color = "#1c1c1c";
     resultBox.innerHTML = 
-        `&sigma;<sub>1</sub> = ${sigma1.toFixed(2)} <br>` +
-        `&sigma;<sub>2</sub> = ${sigma2.toFixed(2)} <br>` +
-        `&tau;<sub>max</sub> = ${tauMax.toFixed(2)}`;
+        `σ<sub>1</sub> = ${sigma1.toFixed(2)} <br>` +
+        `σ<sub>2</sub> = ${sigma2.toFixed(2)} <br>` +
+        `τ<sub>max</sub> = ${tauMax.toFixed(2)}`;
 }
 
 // --- APP 5: Truth Table Calculator ---
 
-// Helper to compute single gate result
 function computeGate(gate, a, b) {
     switch(gate) {
         case "AND": return (a && b) ? 1 : 0;
@@ -250,15 +249,11 @@ function renderTruthTable(gate, activeA, activeB) {
     
     const isUnary = (gate === "NOT");
     
-    // Build Header
     if (!isUnary) {
         html += '<th>B</th>';
     }
     html += `<th>${gate}</th></tr></thead><tbody>`;
     
-    // Permutations
-    // For unary: 0, 1
-    // For binary: 00, 01, 10, 11
     const combinations = isUnary ? [[0], [1]] : [[0,0], [0,1], [1,0], [1,1]];
     
     combinations.forEach(combo => {
@@ -293,18 +288,52 @@ function calculateLogic() {
     const b = parseInt(document.getElementById("inputB").value);
     const resultBox = document.getElementById("logicResult");
     
-    // 1. Compute current single result
     const res = computeGate(gate, a, b);
     resultBox.style.color = "#1c1c1c";
     resultBox.textContent = `Output: ${res}`;
     
-    // 2. Render Full Truth Table
     renderTruthTable(gate, a, b);
+}
+
+// --- APP 6: Number System Converter ---
+function convertNumberSystem() {
+    const numInput = document.getElementById("numInput").value.trim();
+    const fromBase = parseInt(document.getElementById("fromBase").value);
+    const toBase = parseInt(document.getElementById("toBase").value);
+    const resultBox = document.getElementById("numResult");
+
+    if (numInput === "") {
+        resultBox.textContent = "Enter a value";
+        resultBox.style.color = "#d9534f";
+        return;
+    }
+
+    // Validation Regex for specific bases
+    let isValid = false;
+    switch(fromBase) {
+        case 2: isValid = /^[01]+$/.test(numInput); break;
+        case 8: isValid = /^[0-7]+$/.test(numInput); break;
+        case 10: isValid = /^[0-9]+$/.test(numInput); break;
+        case 16: isValid = /^[0-9A-Fa-f]+$/.test(numInput); break;
+    }
+
+    if (!isValid) {
+        resultBox.textContent = `Invalid base-${fromBase} input`;
+        resultBox.style.color = "#d9534f";
+        return;
+    }
+
+    // 1. Convert input to decimal integer
+    const decimalValue = parseInt(numInput, fromBase);
+
+    // 2. Convert decimal to target base string
+    const resultValue = decimalValue.toString(toBase).toUpperCase();
+
+    resultBox.style.color = "#1c1c1c";
+    resultBox.textContent = `${resultValue}`;
 }
 
 // Initialize logic app on load
 document.addEventListener("DOMContentLoaded", () => {
-    // We can trigger an initial calc/render for the Logic App default values
-    // to ensure the table appears immediately.
     calculateLogic(); 
 });

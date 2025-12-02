@@ -19,7 +19,7 @@
                 <button class="nav-item" onclick="scrollToApp('probApp', this)">Dist</button>
                 <button class="nav-item" onclick="scrollToApp('mohrApp', this)">Stress</button>
                 <button class="nav-item" onclick="scrollToApp('logicApp', this)">Logic</button>
-                <button class="nav-item" onclick="scrollToApp('app6', this)">App 6</button>
+                <button class="nav-item" onclick="scrollToApp('numSysApp', this)">Base</button>
                 <button class="nav-item" onclick="scrollToApp('app7', this)">App 7</button>
                 <button class="nav-item" onclick="scrollToApp('app8', this)">App 8</button>
                 <button class="nav-item" onclick="scrollToApp('app9', this)">App 9</button>
@@ -57,7 +57,7 @@
                             <option value="KtoF">Kelvin (K) &rarr; Fahrenheit (&deg;F)</option>
                         </select>
                     </div>
-                    <button onclick="convertTemperature()" class="shack-btn">CALCULATE</button>
+                    <button onclick="convertTemperature()" class="shack-btn">CONVERT</button>
                     <div class="result-box">
                         <p id="result">Waiting for input...</p>
                     </div>
@@ -142,15 +142,15 @@
                 <div class="card-body">
                     <p class="card-desc">Plane stress transformation & principal stresses</p>
                     <div class="input-group">
-                        <label for="sigmaX">Normal Stress X (&sigma;<sub>x</sub>)</label>
+                        <label for="&sigmaX">Normal Stress X (&sigma;<sub>x</sub>)</label>
                         <input type="number" id="sigmaX" placeholder="MPa">
                     </div>
                     <div class="input-group">
-                        <label for="sigmaY">Normal Stress Y (&sigma;<sub>y</sub>)</label>
+                        <label for="&sigmaY">Normal Stress Y (&sigma;<sub>y</sub>)</label>
                         <input type="number" id="sigmaY" placeholder="MPa">
                     </div>
                     <div class="input-group">
-                        <label for="tauXY">Shear Stress (&tau;<sub>xy</sub>)</label>
+                        <label for="&tauXY">Shear Stress (&tau;<sub>xy</sub>)</label>
                         <input type="number" id="tauXY" placeholder="MPa">
                     </div>
                     <button onclick="calculateMohrsCircle()" class="shack-btn">CALCULATE</button>
@@ -160,7 +160,7 @@
                 </div>
             </div>
 
-            <!-- APP 5: Truth Table Calculator (Updated) -->
+            <!-- APP 5: Truth Table -->
             <div id="logicApp" class="card">
                 <div class="card-header">
                     <h3 class="card-title">Truth Table</h3>
@@ -181,7 +181,6 @@
                         </select>
                     </div>
 
-                    <!-- Input selection -->
                     <div class="input-group">
                         <label for="inputA">Input A</label>
                         <select id="inputA" onchange="calculateLogic()">
@@ -198,19 +197,58 @@
                         </select>
                     </div>
 
-                    <button onclick="calculateLogic()" class="shack-btn">CALCULATE</button>
+                    <!-- Button Removed as requested -->
 
                     <div class="result-box">
                         <p id="logicResult">Output: 0</p>
                     </div>
 
-                    <!-- New Container for Truth Table -->
                     <div id="tableContainer" class="table-container"></div>
                 </div>
             </div>
 
-            <!-- Placeholders 6-9 -->
-            <div id="app6" class="card placeholder-card"><h3>App 6</h3><p>Coming Soon</p></div>
+            <!-- APP 6: Number System Converter -->
+            <div id="numSysApp" class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Base Converter</h3>
+                </div>
+                <div class="card-body">
+                    <p class="card-desc">Convert between Dec, Bin, Oct, and Hex</p>
+
+                    <div class="input-group">
+                        <label for="numInput">Input Number</label>
+                        <input type="text" id="numInput" placeholder="Enter value...">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="fromBase">From Base</label>
+                        <select id="fromBase">
+                            <option value="10">Decimal (10)</option>
+                            <option value="2">Binary (2)</option>
+                            <option value="8">Octal (8)</option>
+                            <option value="16">Hexadecimal (16)</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="toBase">To Base</label>
+                        <select id="toBase">
+                            <option value="10">Decimal (10)</option>
+                            <option value="2">Binary (2)</option>
+                            <option value="8">Octal (8)</option>
+                            <option value="16">Hexadecimal (16)</option>
+                        </select>
+                    </div>
+
+                    <button onclick="convertNumberSystem()" class="shack-btn">CONVERT</button>
+
+                    <div class="result-box">
+                        <p id="numResult">Waiting for input...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Placeholders 7-9 -->
             <div id="app7" class="card placeholder-card"><h3>App 7</h3><p>Coming Soon</p></div>
             <div id="app8" class="card placeholder-card"><h3>App 8</h3><p>Coming Soon</p></div>
             <div id="app9" class="card placeholder-card"><h3>App 9</h3><p>Coming Soon</p></div>
