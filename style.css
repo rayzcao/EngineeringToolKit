@@ -185,7 +185,7 @@ label {
     color: #888;
 }
 
-input[type="number"], input[type="text"], select {
+input[type="number"], input[type="text"], input[type="file"], select {
     width: 100%;
     padding: 12px;
     border: 2px solid #eee;
@@ -234,8 +234,8 @@ input:focus, select:focus {
     margin-bottom: 10px;
 }
 
-/* Added #numResult to the bold list */
-#result, #inertiaResult, #probResult, #mohrResult, #logicResult, #numResult {
+/* Added #robotResult to the bold list */
+#result, #inertiaResult, #probResult, #mohrResult, #logicResult, #numResult, #mlResult, #pidResult, #robotResult {
     font-weight: 700;
     font-size: 1.1rem;
     color: var(--shack-black);
@@ -276,7 +276,24 @@ input:focus, select:focus {
     color: var(--shack-black);
 }
 
-/* 10. Placeholders */
+/* 10. CV Canvas Styling */
+.canvas-container {
+    margin-top: 20px;
+    border: 2px dashed #eee;
+    background-color: #fafafa;
+    min-height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+canvas {
+    max-width: 100%;
+    height: auto;
+}
+
+/* 11. Placeholders */
 .placeholder-card {
     border: 2px dashed #ddd;
     background: transparent;

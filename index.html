@@ -12,17 +12,19 @@
 <body>
     <nav class="shack-nav">
         <div class="nav-container">
-            <div class="nav-brand">ENGR TK</div>
+            <div class="nav-brand">ENG TOOLKIT</div>
             <div class="nav-links">
-                <button class="nav-item" onclick="scrollToApp('tempConverter', this)">Temp</button>
+                <!-- Shifted Navigation Order -->
                 <button class="nav-item" onclick="scrollToApp('inertiaApp', this)">Inertia</button>
-                <button class="nav-item" onclick="scrollToApp('probApp', this)">Dist</button>
+                <button class="nav-item" onclick="scrollToApp('probApp', this)">Dist.</button>
                 <button class="nav-item" onclick="scrollToApp('mohrApp', this)">Stress</button>
                 <button class="nav-item" onclick="scrollToApp('logicApp', this)">Logic</button>
                 <button class="nav-item" onclick="scrollToApp('numSysApp', this)">Base</button>
-                <button class="nav-item" onclick="scrollToApp('app7', this)">App 7</button>
-                <button class="nav-item" onclick="scrollToApp('app8', this)">App 8</button>
-                <button class="nav-item" onclick="scrollToApp('app9', this)">App 9</button>
+                <button class="nav-item" onclick="scrollToApp('visionApp', this)">Vision</button>
+                <button class="nav-item" onclick="scrollToApp('mlApp', this)">ML Eval</button>
+                <button class="nav-item" onclick="scrollToApp('pidApp', this)">Control</button>
+                <!-- New App 9 Button -->
+                <button class="nav-item" onclick="scrollToApp('robotApp', this)">Robot</button>
             </div>
         </div>
     </nav>
@@ -30,41 +32,12 @@
     <div class="main-wrapper">
         <header class="page-header">
             <h1>Engineering Toolkit</h1>
-            <p>Author: Raymond Cao</p>
+            <p>Freshly coded utilities for daily tasks</p>
         </header>
 
         <div class="app-grid">
             
-            <!-- APP 1: Temp -->
-            <div id="tempConverter" class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Temp Converter</h3>
-                </div>
-                <div class="card-body">
-                    <p class="card-desc">Celsius (&deg;C), Fahrenheit (&deg;F), Kelvin (K)</p>
-                    <div class="input-group">
-                        <label for="tempInput">Input Value</label>
-                        <input type="number" id="tempInput" placeholder="0">
-                    </div>
-                    <div class="input-group">
-                        <label for="unitSelect">Conversion</label>
-                        <select id="unitSelect">
-                            <option value="CtoF">Celsius (&deg;C) &rarr; Fahrenheit (&deg;F)</option>
-                            <option value="FtoC">Fahrenheit (&deg;F) &rarr; Celsius (&deg;C)</option>
-                            <option value="CtoK">Celsius (&deg;C) &rarr; Kelvin (K)</option>
-                            <option value="KtoC">Kelvin (K) &rarr; Celsius (&deg;C)</option>
-                            <option value="FtoK">Fahrenheit (&deg;F) &rarr; Kelvin (K)</option>
-                            <option value="KtoF">Kelvin (K) &rarr; Fahrenheit (&deg;F)</option>
-                        </select>
-                    </div>
-                    <button onclick="convertTemperature()" class="shack-btn">CONVERT</button>
-                    <div class="result-box">
-                        <p id="result">Waiting for input...</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- APP 2: Inertia -->
+            <!-- SLOT 1: Inertia (Shifted from 2) -->
             <div id="inertiaApp" class="card">
                 <div class="card-header">
                     <h3 class="card-title">Inertia Calc</h3>
@@ -108,7 +81,7 @@
                 </div>
             </div>
 
-            <!-- APP 3: Distribution -->
+            <!-- SLOT 2: Distribution (Shifted from 3) -->
             <div id="probApp" class="card">
                 <div class="card-header">
                     <h3 class="card-title">Normal Dist.</h3>
@@ -134,7 +107,7 @@
                 </div>
             </div>
 
-            <!-- APP 4: Mohr's Circle -->
+            <!-- SLOT 3: Mohr's Circle (Shifted from 4) -->
             <div id="mohrApp" class="card">
                 <div class="card-header">
                     <h3 class="card-title">Mohr's Circle</h3>
@@ -142,15 +115,15 @@
                 <div class="card-body">
                     <p class="card-desc">Plane stress transformation & principal stresses</p>
                     <div class="input-group">
-                        <label for="&sigmaX">Normal Stress X (&sigma;<sub>x</sub>)</label>
+                        <label for="sigmaX">Normal Stress X (&sigma;<sub>x</sub>)</label>
                         <input type="number" id="sigmaX" placeholder="MPa">
                     </div>
                     <div class="input-group">
-                        <label for="&sigmaY">Normal Stress Y (&sigma;<sub>y</sub>)</label>
+                        <label for="sigmaY">Normal Stress Y (&sigma;<sub>y</sub>)</label>
                         <input type="number" id="sigmaY" placeholder="MPa">
                     </div>
                     <div class="input-group">
-                        <label for="&tauXY">Shear Stress (&tau;<sub>xy</sub>)</label>
+                        <label for="tauXY">Shear Stress (&tau;<sub>xy</sub>)</label>
                         <input type="number" id="tauXY" placeholder="MPa">
                     </div>
                     <button onclick="calculateMohrsCircle()" class="shack-btn">CALCULATE</button>
@@ -160,7 +133,7 @@
                 </div>
             </div>
 
-            <!-- APP 5: Truth Table -->
+            <!-- SLOT 4: Truth Table (Shifted from 5) -->
             <div id="logicApp" class="card">
                 <div class="card-header">
                     <h3 class="card-title">Truth Table</h3>
@@ -197,8 +170,6 @@
                         </select>
                     </div>
 
-                    <!-- Button Removed as requested -->
-
                     <div class="result-box">
                         <p id="logicResult">Output: 0</p>
                     </div>
@@ -207,7 +178,7 @@
                 </div>
             </div>
 
-            <!-- APP 6: Number System Converter -->
+            <!-- SLOT 5: Base Converter (Shifted from 6) -->
             <div id="numSysApp" class="card">
                 <div class="card-header">
                     <h3 class="card-title">Base Converter</h3>
@@ -248,10 +219,147 @@
                 </div>
             </div>
 
-            <!-- Placeholders 7-9 -->
-            <div id="app7" class="card placeholder-card"><h3>App 7</h3><p>Coming Soon</p></div>
-            <div id="app8" class="card placeholder-card"><h3>App 8</h3><p>Coming Soon</p></div>
-            <div id="app9" class="card placeholder-card"><h3>App 9</h3><p>Coming Soon</p></div>
+            <!-- SLOT 6: CV Filters (Shifted from 7) -->
+            <div id="visionApp" class="card">
+                <div class="card-header">
+                    <h3 class="card-title">CV Filters</h3>
+                </div>
+                <div class="card-body">
+                    <p class="card-desc">Apply convolution kernels (Edge, Blur, Sharpen)</p>
+
+                    <div class="input-group">
+                        <label for="imageUpload">Upload Image</label>
+                        <input type="file" id="imageUpload" accept="image/*" onchange="loadImage()">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="kernelSelect">Filter (Kernel)</label>
+                        <select id="kernelSelect">
+                            <option value="identity">Original (Identity)</option>
+                            <option value="edge">Edge Detect (Sobel)</option>
+                            <option value="sharpen">Sharpen</option>
+                            <option value="blur">Box Blur</option>
+                            <option value="emboss">Emboss</option>
+                        </select>
+                    </div>
+
+                    <button onclick="applyKernel()" class="shack-btn">APPLY FILTER</button>
+
+                    <div class="canvas-container">
+                        <canvas id="visionCanvas"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLOT 7: ML Metrics (Shifted from 8) -->
+            <div id="mlApp" class="card">
+                <div class="card-header">
+                    <h3 class="card-title">ML Metrics</h3>
+                </div>
+                <div class="card-body">
+                    <p class="card-desc">Evaluation metrics from Confusion Matrix</p>
+
+                    <div class="input-group">
+                        <label for="tpInput">True Positives (TP)</label>
+                        <input type="number" id="tpInput" placeholder="0">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="fpInput">False Positives (FP)</label>
+                        <input type="number" id="fpInput" placeholder="0">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="tnInput">True Negatives (TN)</label>
+                        <input type="number" id="tnInput" placeholder="0">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="fnInput">False Negatives (FN)</label>
+                        <input type="number" id="fnInput" placeholder="0">
+                    </div>
+
+                    <button onclick="calculateMLEvaluation()" class="shack-btn">EVALUATE MODEL</button>
+
+                    <div class="result-box">
+                        <p id="mlResult">Waiting for input...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLOT 8: PID Controller (Shifted from 9) -->
+            <div id="pidApp" class="card">
+                <div class="card-header">
+                    <h3 class="card-title">PID Control</h3>
+                </div>
+                <div class="card-body">
+                    <p class="card-desc">Simulate step response with P-I-D gains</p>
+
+                    <div class="input-group">
+                        <label for="kpInput">Proportional Gain (K<sub>p</sub>)</label>
+                        <input type="number" id="kpInput" value="0.5" step="0.1">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="kiInput">Integral Gain (K<sub>i</sub>)</label>
+                        <input type="number" id="kiInput" value="0.01" step="0.01">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="kdInput">Derivative Gain (K<sub>d</sub>)</label>
+                        <input type="number" id="kdInput" value="0.1" step="0.01">
+                    </div>
+
+                    <button onclick="runPIDSimulation()" class="shack-btn">SIMULATE STEP</button>
+
+                    <div class="canvas-container">
+                        <canvas id="pidCanvas"></canvas>
+                    </div>
+                    <div class="result-box">
+                        <p id="pidResult" style="font-size:0.8rem; font-weight:500;">Green: Setpoint | Red: Process</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLOT 9: Robotics (New) -->
+            <div id="robotApp" class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Robot Kinematics</h3>
+                </div>
+                <div class="card-body">
+                    <p class="card-desc">Forward Kinematics for 2-Link Planar Arm</p>
+
+                    <div class="input-group">
+                        <label for="l1Input">Link 1 Length (L<sub>1</sub>)</label>
+                        <input type="number" id="l1Input" value="100" placeholder="units">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="l2Input">Link 2 Length (L<sub>2</sub>)</label>
+                        <input type="number" id="l2Input" value="80" placeholder="units">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="theta1Input">Joint 1 Angle (&theta;<sub>1</sub> deg)</label>
+                        <input type="number" id="theta1Input" value="45" step="5">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="theta2Input">Joint 2 Angle (&theta;<sub>2</sub> deg)</label>
+                        <input type="number" id="theta2Input" value="-30" step="5">
+                    </div>
+
+                    <button onclick="updateRobotArm()" class="shack-btn">UPDATE POSE</button>
+
+                    <div class="canvas-container">
+                        <canvas id="robotCanvas"></canvas>
+                    </div>
+                    <div class="result-box">
+                        <p id="robotResult">EE Pos: (0, 0)</p>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
     <script src="control.js"></script>
