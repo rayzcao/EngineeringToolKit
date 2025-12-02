@@ -231,16 +231,53 @@ input:focus, select:focus {
     padding: 15px;
     border-top: 2px dashed #eee;
     text-align: center;
+    margin-bottom: 10px; /* Added spacing before table */
 }
 
-/* I added #probResult and #mohrResult to this list so they get the bold styling */
-#result, #inertiaResult, #probResult, #mohrResult {
+/* I added #logicResult to this list so it gets the bold styling */
+#result, #inertiaResult, #probResult, #mohrResult, #logicResult {
     font-weight: 700;
     font-size: 1.1rem;
     color: var(--shack-black);
 }
 
-/* 9. Placeholders */
+/* 9. Truth Table Styling */
+.table-container {
+    margin-top: 10px;
+    border: 1px solid #eee;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.shack-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.shack-table th {
+    background-color: var(--shack-black);
+    color: var(--shack-white);
+    padding: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.shack-table td {
+    padding: 8px;
+    border-bottom: 1px solid #f0f0f0;
+    color: #444;
+}
+
+/* Highlight the row matching current inputs */
+.shack-table .active-row {
+    background-color: rgba(96, 179, 77, 0.2); /* Light Shack Green */
+    font-weight: 700;
+    color: var(--shack-black);
+}
+
+/* 10. Placeholders */
 .placeholder-card {
     border: 2px dashed #ddd;
     background: transparent;

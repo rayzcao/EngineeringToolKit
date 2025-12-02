@@ -163,12 +163,10 @@ function calculateProbability() {
         return;
     }
 
-    // 1. Calculate PDF
     const variance = std * std;
     const exponent = Math.exp(-Math.pow(x - mean, 2) / (2 * variance));
     const pdf = (1 / (std * Math.sqrt(2 * Math.PI))) * exponent;
 
-    // 2. Calculate CDF (using Abramowitz & Stegun approximation)
     const z = (x - mean) / std;
     
     function getStandardCDF(z) {
@@ -201,17 +199,11 @@ function calculateMohrsCircle() {
         return;
     }
 
-    // Calculate Average Stress (Center of Circle)
     const sigmaAvg = (sx + sy) / 2;
-
-    // Calculate Radius (Max Shear Stress)
     const R = Math.sqrt(Math.pow((sx - sy) / 2, 2) + Math.pow(txy, 2));
 
-    // Principal Stresses
     const sigma1 = sigmaAvg + R;
     const sigma2 = sigmaAvg - R;
-    
-    // Max Shear Stress
     const tauMax = R;
 
     resultBox.style.color = "#1c1c1c";
@@ -220,3 +212,99 @@ function calculateMohrsCircle() {
         `&sigma;<sub>2</sub> = ${sigma2.toFixed(2)} <br>` +
         `&tau;<sub>max</sub> = ${tauMax.toFixed(2)}`;
 }
+
+// --- APP 5: Truth Table Calculator ---
+
+// Helper to compute single gate result
+function computeGate(gate, a, b) {
+    switch(gate) {
+        case "AND": return (a && b) ? 1 : 0;
+        case "OR": return (a || b) ? 1 : 0;
+        case "XOR": return (a !== b) ? 1 : 0;
+        case "NAND": return !(a && b) ? 1 : 0;
+        case "NOR": return !(a || b) ? 1 : 0;
+        case "XNOR": return (a === b) ? 1 : 0;
+        case "NOT": return (!a) ? 1 : 0;
+        default: return 0;
+    }
+}
+
+function updateLogicInputs() {
+    const gate = document.getElementById("gateSelect").value;
+    const groupB = document.getElementById("inputBGroup");
+    
+    // Hide Input B if NOT gate is selected (Unary operator)
+    if (gate === "NOT") {
+        groupB.classList.add("hidden");
+    } else {
+        groupB.classList.remove("hidden");
+    }
+    
+    // Recalculate to update the table immediately
+    calculateLogic();
+}
+
+function renderTruthTable(gate, activeA, activeB) {
+    const container = document.getElementById("tableContainer");
+    let html = '<table class="shack-table"><thead><tr><th>A</th>';
+    
+    const isUnary = (gate === "NOT");
+    
+    // Build Header
+    if (!isUnary) {
+        html += '<th>B</th>';
+    }
+    html += `<th>${gate}</th></tr></thead><tbody>`;
+    
+    // Permutations
+    // For unary: 0, 1
+    // For binary: 00, 01, 10, 11
+    const combinations = isUnary ? [[0], [1]] : [[0,0], [0,1], [1,0], [1,1]];
+    
+    combinations.forEach(combo => {
+        const a = combo[0];
+        const b = isUnary ? null : combo[1];
+        const res = computeGate(gate, a, b);
+        
+        // Check if this row matches user selection
+        let isActive = false;
+        if (isUnary) {
+            if (a === activeA) isActive = true;
+        } else {
+            if (a === activeA && b === activeB) isActive = true;
+        }
+        
+        const rowClass = isActive ? 'class="active-row"' : '';
+        
+        html += `<tr ${rowClass}><td>${a}</td>`;
+        if (!isUnary) {
+            html += `<td>${b}</td>`;
+        }
+        html += `<td><strong>${res}</strong></td></tr>`;
+    });
+    
+    html += '</tbody></table>';
+    container.innerHTML = html;
+}
+
+function calculateLogic() {
+    const gate = document.getElementById("gateSelect").value;
+    const a = parseInt(document.getElementById("inputA").value);
+    const b = parseInt(document.getElementById("inputB").value);
+    const resultBox = document.getElementById("logicResult");
+    
+    // 1. Compute current single result
+    const res = computeGate(gate, a, b);
+    resultBox.style.color = "#1c1c1c";
+    resultBox.textContent = `Output: ${res}`;
+    
+    // 2. Render Full Truth Table
+    renderTruthTable(gate, a, b);
+}
+
+// Initialize logic app on load
+document.addEventListener("DOMContentLoaded", () => {
+    // We can trigger an initial calc/render for the Logic App default values
+    // to ensure the table appears immediately.
+    calculateLogic(); 
+});
